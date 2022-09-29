@@ -18,7 +18,8 @@ logic dump_logic1, dump_logic2;
 // This module need to be compiled
 linebuffer #(
   .DATA_W (),
-  .KERNEL_W ()
+  .KERNEL_W (),
+  .RESOLUTION ()
 ) line_buff (
   .clk_i (),
   .srst_i (),
@@ -37,6 +38,19 @@ conv #(
 .pixel_data_valid_i (),
 .pixel_o (),
 .pixel_valid_o ()
+);
+
+image_control #(
+  .DATA_W     (),
+  .KERNEL_W   (),
+  .RESOLUTION () 
+) im_control (
+  .clk_i (),
+  .srst_i (),
+  .data_pixel_i (),
+  .data_pixel_valid_i (),
+  .pixel_o (),
+  .pixel_valid_o ()
 );
 
 // dump logic

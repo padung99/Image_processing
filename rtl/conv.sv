@@ -20,7 +20,7 @@ logic sum_valid;
 
 initial
   begin
-    kernel = '{'{ 8'd0, 8'd0, 8'd0 }, '{ 8'd0, 8'd1, 8'd0 }, '{ 8'd0, 8'd0, 8'd0 }}; //identify
+    kernel = '{'{ 8'd0, 8'd0, 8'd0 }, '{ 8'd0, 8'd1, 8'd0 }, '{ 8'd0, 8'd0, 8'd0 }}; //identity
     // kernel = '{'{ 8'd1, 8'd1, 8'd1 }, '{ 8'd1, 8'd1, 8'd1 }, '{ 8'd1, 8'd1, 8'd1 }}; //blur
   end
 

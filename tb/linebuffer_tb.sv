@@ -1,9 +1,9 @@
 module linebuffer_tb;
 
-parameter MAX_DATA = 512;
 
-parameter DATA_W_TB = 8;
-parameter KERNEL_W_TB = 3;
+parameter DATA_W_TB     = 8;
+parameter KERNEL_W_TB   = 3;
+parameter RESOLUTION_TB = 512;
 
 bit clk_i_tb;
 
@@ -23,7 +23,8 @@ endclocking
 
 linebuffer #(
   .DATA_W     ( DATA_W_TB     ),
-  .KERNEL_W   ( KERNEL_W_TB   )
+  .KERNEL_W   ( KERNEL_W_TB   ),
+  .RESOLUTION ( RESOLUTION_TB )
 ) dut (
   .clk_i      ( clk_i_tb      ),
   .srst_i     ( srst_i_tb     ),
@@ -40,7 +41,7 @@ logic rd_valid;
 
 i = 0;
 
-while( i <= MAX_DATA )
+while( i <= RESOLUTION_TB )
   begin
     wr_valid_i_tb = 1'b1;
 

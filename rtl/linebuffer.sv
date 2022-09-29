@@ -1,6 +1,7 @@
 module linebuffer #(
-  parameter DATA_W   = 8,
-  parameter KERNEL_W = 3
+  parameter DATA_W     = 8,
+  parameter KERNEL_W   = 3,
+  parameter RESOLUTION = 512
 ) (
   input  logic              clk_i,
   input  logic              srst_i,
@@ -10,9 +11,11 @@ module linebuffer #(
   input  logic              rd_valid_i
 );
 
-logic [7:0] line [511:0];
-logic [8:0] wr_ptr;
-logic [8:0] rd_ptr;
+localparam RESOLUTION_W = $clog2(RESOLUTION);
+
+logic [DATA_W-1:0] line [RESOLUTION-1:0];
+logic [RESOLUTION_W-1:0] wr_ptr;
+logic [RESOLUTION_W-1:0] rd_ptr;
 
 always_ff @( posedge clk_i )
   begin
@@ -24,9 +27,9 @@ always_ff @( posedge clk_i )
     else
       begin
         if( wr_valid_i )
-          wr_ptr <= wr_ptr + 9'd1;
+          wr_ptr <= wr_ptr + (RESOLUTION_W)'(1);
         if( rd_valid_i && wr_ptr >= 3 )
-          rd_ptr <= rd_ptr + 9'd1;
+          rd_ptr <= rd_ptr + (RESOLUTION_W)'(1);
       end
   end
 
